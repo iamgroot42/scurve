@@ -105,14 +105,15 @@ def entropy(data, blocksize, offset, symbols=256):
         Returns local byte entropy for a location in a file.
     """
     if len(data) < blocksize:
-        raise ValueError, "Data length must be larger than block size."
+        raise ValueError("Data length must be larger than block size.")
     if offset < blocksize/2:
         start = 0
-    elif offset > len(data)-blocksize/2:
-        start = len(data)-blocksize/2
+    elif offset > len(data)-blocksize//2:
+        start = len(data)-blocksize//2
     else:
-        start = offset-blocksize/2
+        start = offset-blocksize//2
     hist = {}
+    start = int(start)
     for i in data[start:start+blocksize]:
         hist[i] = hist.get(i, 0) + 1
     base = min(blocksize, symbols)

@@ -1,12 +1,15 @@
 import math
-import cairo
 
 class Canvas:
     def __init__(self, width, height):
+        import cairo
+        # Don't import cairo unless it's needed
         self.width, self.height = width, height
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 
     def ctx(self):
+        import cairo
+        # Don't import cairo unless it's needed
         return cairo.Context(self.surface)
 
     def background(self, r, g, b, a=1):
